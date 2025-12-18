@@ -1,32 +1,30 @@
 package dev.abdaziz.fcitgroups.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "courses")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
-public class User {
+@Setter
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false, updatable = false, unique = true)
     private UUID id;
 
-    @Column(nullable = false, updatable = false, unique = true)
+    @Column(nullable = false)
     private String name;
 
-    @Email
-    @Column(nullable = false, updatable = false, unique = true)
-    private String email;
-
-    @Setter
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Builder.Default
-    private Gender gender = Gender.UNKNOWN;
+    private String code;
+
+    @Column(nullable = false)
+    private int number;
+    
 }
+
