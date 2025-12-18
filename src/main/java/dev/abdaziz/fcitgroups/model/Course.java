@@ -5,7 +5,9 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "courses")
+@Table(name = "courses", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"code", "number"}, name = "uk_course_code_number")
+})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
