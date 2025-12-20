@@ -1,13 +1,13 @@
 package dev.abdaziz.fcitgroups.controller;
 
+import dev.abdaziz.fcitgroups.model.Gender;
+import dev.abdaziz.fcitgroups.service.UserService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import lombok.RequiredArgsConstructor;
 
-import dev.abdaziz.fcitgroups.model.Gender;
-import dev.abdaziz.fcitgroups.model.User;
-import dev.abdaziz.fcitgroups.service.UserService;
+import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
@@ -16,11 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    @PostMapping("/register")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user.getName(), user.getEmail()));
-    }
 
     @PutMapping("/{id}/gender")
     public ResponseEntity<Void> updateGender(@PathVariable UUID id, @RequestBody GenderUpdateRequest request) {

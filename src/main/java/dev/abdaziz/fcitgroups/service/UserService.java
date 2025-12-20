@@ -4,9 +4,10 @@ import dev.abdaziz.fcitgroups.model.Gender;
 import dev.abdaziz.fcitgroups.model.User;
 import dev.abdaziz.fcitgroups.repository.UserRepository;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -15,18 +16,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
-    public User createUser(String name, String email) {
-        if (userRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException("User with email " + email + " already exists");
-        }
-        User user = User.builder()
-                .name(name)
-                .email(email)
-                .gender(Gender.UNKNOWN)
-                .build();
-        return userRepository.save(user);
-    }
 
     @Transactional
     public void updateGender(UUID id, Gender gender) {
