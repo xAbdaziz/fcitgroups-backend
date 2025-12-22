@@ -1,6 +1,6 @@
-package dev.abdaziz.fcitgroups.repository;
+package dev.abdaziz.kaugroups.repository;
 
-import dev.abdaziz.fcitgroups.model.Course;
+import dev.abdaziz.kaugroups.model.Course;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +15,6 @@ public interface CourseRepository extends JpaRepository<Course, UUID> {
     List<Course> findByNumber(int number);
     Optional<Course> findByCodeAndNumber(String code, int number);
 }
+
+
 

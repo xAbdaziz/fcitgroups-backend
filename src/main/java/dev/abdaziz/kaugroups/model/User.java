@@ -1,4 +1,4 @@
-package dev.abdaziz.fcitgroups.model;
+package dev.abdaziz.kaugroups.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -30,3 +30,4 @@ public class User {
     @Builder.Default
     private Gender gender = Gender.UNKNOWN;
 }
+

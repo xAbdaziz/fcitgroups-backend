@@ -1,13 +1,14 @@
-package dev.abdaziz.fcitgroups;
+package dev.abdaziz.kaugroups;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FcitgroupsApplicationTests {
+class KaugroupsApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
 }
+

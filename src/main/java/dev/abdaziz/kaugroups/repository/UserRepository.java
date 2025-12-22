@@ -1,6 +1,6 @@
-package dev.abdaziz.fcitgroups.repository;
+package dev.abdaziz.kaugroups.repository;
 
-import dev.abdaziz.fcitgroups.model.User;
+import dev.abdaziz.kaugroups.model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,3 +15,4 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     Optional<User> findByEmail(String email);
     boolean existsByEmail(String email);
 }
+

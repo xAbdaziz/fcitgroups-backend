@@ -1,7 +1,7 @@
-package dev.abdaziz.fcitgroups.controller;
+package dev.abdaziz.kaugroups.controller;
 
-import dev.abdaziz.fcitgroups.model.Gender;
-import dev.abdaziz.fcitgroups.service.UserService;
+import dev.abdaziz.kaugroups.model.Gender;
+import dev.abdaziz.kaugroups.service.UserService;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,3 +25,4 @@ public class UserController {
 
     public record GenderUpdateRequest(Gender gender) {}
 }
+

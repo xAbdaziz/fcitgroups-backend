@@ -1,8 +1,8 @@
-package dev.abdaziz.fcitgroups.service;
+package dev.abdaziz.kaugroups.service;
 
-import dev.abdaziz.fcitgroups.model.Gender;
-import dev.abdaziz.fcitgroups.model.User;
-import dev.abdaziz.fcitgroups.repository.UserRepository;
+import dev.abdaziz.kaugroups.model.Gender;
+import dev.abdaziz.kaugroups.model.User;
+import dev.abdaziz.kaugroups.repository.UserRepository;
 
 import org.springframework.stereotype.Service;
 
@@ -26,3 +26,4 @@ public class AuthService {
     }
     
 }
+

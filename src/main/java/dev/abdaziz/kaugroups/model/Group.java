@@ -1,4 +1,4 @@
-package dev.abdaziz.fcitgroups.model;
+package dev.abdaziz.kaugroups.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,3 +33,4 @@ public class Group {
     private Gender gender;
     
 }
+

@@ -1,11 +1,11 @@
-package dev.abdaziz.fcitgroups.controller;
+package dev.abdaziz.kaugroups.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import dev.abdaziz.fcitgroups.model.User;
-import dev.abdaziz.fcitgroups.service.AuthService;
+import dev.abdaziz.kaugroups.model.User;
+import dev.abdaziz.kaugroups.service.AuthService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
@@ -20,3 +20,4 @@ public class AuthController {
     }
     
 }
+
