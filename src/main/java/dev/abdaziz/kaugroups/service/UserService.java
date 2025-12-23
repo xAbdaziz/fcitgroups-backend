@@ -1,5 +1,7 @@
 package dev.abdaziz.kaugroups.service;
 
+import dev.abdaziz.kaugroups.exception.BusinessRuleViolationException;
+import dev.abdaziz.kaugroups.exception.ResourceNotFoundException;
 import dev.abdaziz.kaugroups.model.Gender;
 import dev.abdaziz.kaugroups.model.User;
 import dev.abdaziz.kaugroups.repository.UserRepository;
@@ -9,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -19,15 +20,15 @@ public class UserService {
 
     @Transactional
     public void updateGender(UUID id, Gender gender) {
-        Optional<User> user = userRepository.findById(id);
-        if (user.isEmpty()) {
-            throw new IllegalArgumentException("User not found");
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+        
+        if (user.getGender() != Gender.UNKNOWN) {
+            throw new BusinessRuleViolationException("User already has a gender assigned");
         }
-        if (user.get().getGender() != Gender.UNKNOWN) {
-            throw new IllegalArgumentException("User already has a gender");
-        }
-        user.get().setGender(gender);
-        userRepository.save(user.get());
+        
+        user.setGender(gender);
+        userRepository.save(user);
     }
 }
 
