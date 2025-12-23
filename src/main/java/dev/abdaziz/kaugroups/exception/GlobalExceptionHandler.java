@@ -22,6 +22,7 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.of(
             HttpStatus.NOT_FOUND.value(),
             "Not Found",
+            "RESOURCE_NOT_FOUND",
             ex.getMessage(),
             request.getRequestURI()
         );
@@ -39,6 +40,7 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.of(
             HttpStatus.CONFLICT.value(),
             "Conflict",
+            "BUSINESS_RULE_VIOLATION",
             ex.getMessage(),
             request.getRequestURI()
         );
@@ -56,6 +58,7 @@ public class GlobalExceptionHandler {
         ErrorResponse response = ErrorResponse.of(
             HttpStatus.CONFLICT.value(),
              "Conflict",
+              "USER_ALREADY_EXISTS",
               ex.getMessage(),
               request.getRequestURI()
         );
