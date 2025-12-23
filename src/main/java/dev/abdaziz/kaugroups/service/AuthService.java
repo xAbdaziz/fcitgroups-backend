@@ -1,5 +1,6 @@
 package dev.abdaziz.kaugroups.service;
 
+import dev.abdaziz.kaugroups.exception.UserAlreadyExistsException;
 import dev.abdaziz.kaugroups.model.Gender;
 import dev.abdaziz.kaugroups.model.User;
 import dev.abdaziz.kaugroups.repository.UserRepository;
@@ -15,7 +16,7 @@ public class AuthService {
 
     public User register(String name, String email) {
         if (userRepository.existsByEmail(email)) {
-            throw new IllegalArgumentException("User with email " + email + " already exists");
+            throw new UserAlreadyExistsException("User with email " + email + " already exists");
         }
         User user = User.builder()
                 .name(name)
