@@ -47,5 +47,23 @@ public class GlobalExceptionHandler {
         
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<ErrorResponse> handleUnauthorized(
+            UnauthorizedException ex,
+            HttpServletRequest request) {
+        
+        log.warn("Unauthorized: {}", ex.getMessage());
+        
+        ErrorResponse response = ErrorResponse.of(
+            HttpStatus.UNAUTHORIZED.value(),
+            "Unauthorized",
+            "UNAUTHORIZED",
+            ex.getMessage(),
+            request.getRequestURI()
+        );
+        
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
 }
 

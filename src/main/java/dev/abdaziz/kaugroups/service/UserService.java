@@ -19,6 +19,11 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
 
+    public User getUserById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
+    }
+
     @Transactional
     public User processOAuth2User(OAuth2User oAuth2User) {
         String email = oAuth2User.getAttribute("email");

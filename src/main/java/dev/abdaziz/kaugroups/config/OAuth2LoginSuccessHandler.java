@@ -3,7 +3,6 @@ package dev.abdaziz.kaugroups.config;
 import dev.abdaziz.kaugroups.model.User;
 import dev.abdaziz.kaugroups.service.JwtService;
 import dev.abdaziz.kaugroups.service.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
