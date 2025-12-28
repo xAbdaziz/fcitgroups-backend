@@ -35,3 +35,6 @@ build/
 ## Dev Env ##
 **/application-dev.properties
 *.db
+
+# DB Seeding
+*.json
