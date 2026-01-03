@@ -27,6 +27,15 @@ public interface GroupRepository extends JpaRepository<Group, UUID> {
         @Param("courseNumber") Integer courseNumber, 
         @Param("gender") Gender gender
     );
+
+    @Query("SELECT COUNT(g) > 0 FROM Group g WHERE g.course = :course AND g.section = :section AND g.gender = :gender AND (:excludeId IS NULL OR g.id != :excludeId)")
+    boolean existsDuplicateSection(@Param("course") Course course, @Param("section") String section, @Param("gender") Gender gender, @Param("excludeId") UUID excludeId);
+
+    @Query("SELECT COUNT(g) > 0 FROM Group g WHERE g.course = :course AND g.gender = :gender AND g.generalGroup = true AND (:excludeId IS NULL OR g.id != :excludeId)")
+    boolean existsDuplicateGeneralPerGender(@Param("course") Course course, @Param("gender") Gender gender, @Param("excludeId") UUID excludeId);
+
+    @Query("SELECT COUNT(g) > 0 FROM Group g WHERE g.course = :course AND g.generalGroupMaleAndFemale = true AND (:excludeId IS NULL OR g.id != :excludeId)")
+    boolean existsDuplicateGeneralForBoth(@Param("course") Course course, @Param("excludeId") UUID excludeId);
 }
 
 

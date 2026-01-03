@@ -52,4 +52,14 @@ public class GroupController {
         groupService.deleteGroup(user, id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateGroup(
+            @AuthenticationPrincipal User user,
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdateGroupRequest request
+    ) {
+        groupService.updateGroup(user, id, request);
+        return ResponseEntity.noContent().build();
+    }
 }
