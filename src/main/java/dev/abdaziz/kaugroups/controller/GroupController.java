@@ -43,4 +43,13 @@ public class GroupController {
         GetGroupsResponse response = GetGroupsResponse.from(groups);
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGroup(
+            @AuthenticationPrincipal User user,
+            @PathVariable UUID id
+    ){
+        groupService.deleteGroup(user, id);
+        return ResponseEntity.noContent().build();
+    }
 }

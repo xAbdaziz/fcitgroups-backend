@@ -1,7 +1,6 @@
 package dev.abdaziz.kaugroups.service;
 
 import dev.abdaziz.kaugroups.dto.request.AddGroupRequest;
-import dev.abdaziz.kaugroups.dto.request.DeleteGroupRequest;
 import dev.abdaziz.kaugroups.dto.request.GetGroupsRequest;
 import dev.abdaziz.kaugroups.exception.BusinessRuleViolationException;
 import dev.abdaziz.kaugroups.exception.ResourceNotFoundException;
@@ -13,11 +12,11 @@ import dev.abdaziz.kaugroups.repository.CourseRepository;
 import dev.abdaziz.kaugroups.repository.GroupRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -73,6 +72,20 @@ public class GroupService {
         }
         
         return groups;
+    }
+
+    @Transactional
+    public void deleteGroup(User user, UUID id) {
+        Group group = groupRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("No group found with id: " + id));
+        
+        if (!group.getUser().getId().equals(user.getId())) {
+            throw new BusinessRuleViolationException(
+                "You are not authorized to delete this group. Only the group creator can delete it."
+            );
+        }
+        
+        groupRepository.delete(group);
     }
 
     private Gender determineGroupGender(User user, AddGroupRequest request) {
