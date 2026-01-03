@@ -1,6 +1,8 @@
 package dev.abdaziz.kaugroups.service;
 
 import dev.abdaziz.kaugroups.dto.request.AddGroupRequest;
+import dev.abdaziz.kaugroups.dto.request.DeleteGroupRequest;
+import dev.abdaziz.kaugroups.dto.request.GetGroupsRequest;
 import dev.abdaziz.kaugroups.exception.BusinessRuleViolationException;
 import dev.abdaziz.kaugroups.exception.ResourceNotFoundException;
 import dev.abdaziz.kaugroups.model.Course;
@@ -13,6 +15,10 @@ import dev.abdaziz.kaugroups.repository.GroupRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -51,6 +57,22 @@ public class GroupService {
             .build();
 
         return groupRepository.save(group);
+    }
+
+    public List<Group> getGroups(User user, GetGroupsRequest request) {
+        List<Group> groups = groupRepository.findByCourseAndGenderOrGeneralForBoth(
+            request.getCourseCode().toUpperCase(), 
+            request.getCourseNumber(), 
+            user.getGender()
+        );
+        
+        if (groups.isEmpty()) {
+            throw new ResourceNotFoundException(
+                "No groups found for course: " + request.getCourseCode() + request.getCourseNumber()
+            );
+        }
+        
+        return groups;
     }
 
     private Gender determineGroupGender(User user, AddGroupRequest request) {
